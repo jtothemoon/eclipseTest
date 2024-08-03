@@ -4,11 +4,12 @@ import axios from 'axios';
 function Register() {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
+    const [age, setAge] = useState(''); // 나이 상태 추가
 
     const handleSubmit = async (event) => {
         event.preventDefault();
         try {
-            const response = await axios.post('/api/register', { username, password });
+            const response = await axios.post('/api/register', { username, password, age });
             console.log('User registered successfully:', response.data);
             alert('User registered successfully!');
         } catch (error) {
@@ -36,6 +37,15 @@ function Register() {
                         type="password"
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
+                        required
+                    />
+                </div>
+                <div>
+                    <label>Age:</label>
+                    <input
+                        type="number"
+                        value={age}
+                        onChange={(e) => setAge(e.target.value)}
                         required
                     />
                 </div>
